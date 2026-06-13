@@ -69,6 +69,6 @@ body {
 .btn.action  { background: #533483; color: #fff; }
 .btn.operator{ background: #e94560; color: #fff; }
 .btn.equals  { background: #e94560; color: #fff; grid-column: span 2; }
-.btn.custom  { background: #533483; color: #fff; font-size: 14px; }
+.btn.custom  { background: #533483; color: #fff; font-size: 16px; }
 
 .btn:hover { opacity: 0.85; }

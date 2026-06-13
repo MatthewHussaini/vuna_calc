@@ -1,6 +1,6 @@
 /**
  * VUNA-Calc — pure logic engine (no DOM, no window references)
- * Custom feature: percentOf(value, total) — calculates what percentage value is of total
+ * Custom feature: factorial(n) — calculates n! (e.g. 5! = 120)
  */
 
 function evaluateExpression(expr) {
@@ -23,17 +23,28 @@ function evaluateExpression(expr) {
 }
 
 /**
- * Custom feature: calculates what percentage `value` is of `total`.
- * Example: percentOf(25, 200) => 12.5  (25 is 12.5% of 200)
+ * Custom feature: calculates factorial of n.
+ * Example: factorial(5) => 120, factorial(0) => 1
  */
-function percentOf(value, total) {
-  if (total === 0) {
-    throw new Error('Total cannot be zero');
+function factorial(n) {
+  if (n < 0) {
+    throw new Error('Factorial of negative number');
   }
-  return (value / total) * 100;
+  if (!Number.isInteger(n)) {
+    throw new Error('Factorial requires a whole number');
+  }
+  if (n > 170) {
+    throw new Error('Number too large');
+  }
+  if (n === 0 || n === 1) { return 1; }
+  let result = 1;
+  for (let i = 2; i <= n; i++) {
+    result *= i;
+  }
+  return result;
 }
 
 // Export for Jest (Node environment only)
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { evaluateExpression, percentOf };
+  module.exports = { evaluateExpression, factorial };
 }

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matthew Hussaini — SEN 482 DevOps</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #1a1a2e;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #e2e2e2;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: #16213e;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #e94560;
+    }
+    nav .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #e94560;
+      letter-spacing: 2px;
+    }
+    nav a {
+      color: #e2e2e2;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      background: #e94560;
+      padding: 8px 20px;
+      border-radius: 8px;
+      transition: opacity 0.2s;
+    }
+    nav a:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e94560, #533483);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 32px rgba(233, 69, 96, 0.4);
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 span { color: #e94560; }
+
+    .hero .subtitle {
+      font-size: 16px;
+      color: #a0a0b8;
+      margin-bottom: 6px;
+    }
+
+    .hero .matno {
+      font-size: 13px;
+      color: #533483;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+    }
+
+    /* ── CARDS ── */
+    .cards {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: #16213e;
+      border-radius: 16px;
+      padding: 28px 32px;
+      width: 260px;
+      border: 1px solid #0f3460;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: #e94560; }
+
+    .card .icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #e94560;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #a0a0b8;
+      line-height: 1.6;
+    }
+
+    /* ── CA BUTTON ── */
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #e94560, #533483);
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 36px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(233, 69, 96, 0.35);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .cta:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    /* ── PIPELINE BADGE ── */
+    .badge-row {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .badge {
+      background: #0f3460;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #16213e;
+      text-align: center;
+      padding: 16px;
+      font-size: 12px;
+      color: #a0a0b8;
+      border-top: 1px solid #0f3460;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">HUSSAINI</div>
+    <a href="calc/index.html">Launch Calculator →</a>
+  </nav>
+
+  <section class="hero">
+    <div class="avatar">MH</div>
+
+    <h1>Matthew <span>Hussaini</span></h1>
+    <p class="subtitle">Software Engineering · Veritas University, Abuja</p>
+    <p class="matno">VUG/SEN/22/7312</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="icon">⚙️</div>
+        <h3>CI/CD Pipeline</h3>
+        <p>Automated pipeline using GitHub Actions — lint, test, Docker build, and FTP deploy on every push to main.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🐳</div>
+        <h3>Docker Image</h3>
+        <p>Multi-stage Dockerfile: Node 20 builds and tests the app, Nginx serves the static output in production.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🧪</div>
+        <h3>Automated Tests</h3>
+        <p>9 Jest tests covering arithmetic, operator precedence, error handling, and the custom "% of" feature. 92% coverage.</p>
+      </div>
+    </div>
+
+    <a class="cta" href="calc/index.html">
+      <span>🧮</span> Open VUNA-Calc
+    </a>
+
+    <div class="badge-row">
+      <div class="badge"><div class="dot"></div> LINT PASSING</div>
+      <div class="badge"><div class="dot"></div> TESTS PASSING</div>
+      <div class="badge"><div class="dot"></div> DOCKER PUSHED</div>
+      <div class="badge"><div class="dot"></div> AUTO-DEPLOYED</div>
+    </div>
+  </section>
+
+  <footer>
+    SEN 482 DevOps · CI/CD Continuous Assessment · Veritas University Abuja
+  </footer>
+
+</body>
+</html>

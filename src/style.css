@@ -1,35 +1,35 @@
 /* VUNA-Calc — Styles */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
 body {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #1a1a2e;
+  background: #0a1f0a;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
+ 
 .calculator {
-  background: #16213e;
+  background: #0d2b0d;
   border-radius: 20px;
   padding: 24px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   width: 320px;
 }
-
+ 
 .brand {
   text-align: center;
-  color: #e94560;
+  color: #4ade80;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 3px;
   margin-bottom: 16px;
   text-transform: uppercase;
 }
-
+ 
 .display {
-  background: #0f3460;
+  background: #14381a;
   border-radius: 12px;
   padding: 16px 20px;
   min-height: 64px;
@@ -43,15 +43,15 @@ body {
   margin-bottom: 20px;
   transition: color 0.2s;
 }
-
-.display.error { color: #e94560; }
-
+ 
+.display.error { color: #f87171; }
+ 
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
-
+ 
 .btn {
   height: 64px;
   border: none;
@@ -60,15 +60,15 @@ body {
   font-weight: 500;
   cursor: pointer;
   transition: transform 0.1s, opacity 0.1s;
-  background: #0f3460;
+  background: #14381a;
   color: #e2e2e2;
 }
-
+ 
 .btn:active { transform: scale(0.94); opacity: 0.8; }
-
-.btn.action  { background: #533483; color: #fff; }
-.btn.operator{ background: #e94560; color: #fff; }
-.btn.equals  { background: #e94560; color: #fff; grid-column: span 2; }
-.btn.custom  { background: #533483; color: #fff; font-size: 16px; }
-
+ 
+.btn.action  { background: #166534; color: #fff; }
+.btn.operator{ background: #4ade80; color: #000; }
+.btn.equals  { background: #4ade80; color: #000; grid-column: span 2; }
+.btn.custom  { background: #166534; color: #fff; font-size: 16px; }
+ 
 .btn:hover { opacity: 0.85; }

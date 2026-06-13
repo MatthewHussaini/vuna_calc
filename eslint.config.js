@@ -23,7 +23,7 @@ module.exports = [
         process: 'readonly',
         // Calculator functions (declared in calculator.js, used in ui.js)
         evaluateExpression: 'readonly',
-        percentOf: 'readonly',
+        factorial: 'readonly',
         // Jest globals (needed by test files)
         describe: 'readonly',
         it: 'readonly',
@@ -44,7 +44,10 @@ module.exports = [
     languageOptions: {
       ecmaVersion: 2021,
       sourceType: 'module',
-      globals: { console: 'readonly' },
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+      },
     },
   },
 ];

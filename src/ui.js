@@ -1,6 +1,6 @@
 /**
  * VUNA-Calc — UI wiring
- * Reads from / writes to the DOM. Calls evaluateExpression() and percentOf()
+ * Reads from / writes to the DOM. Calls evaluateExpression() and factorial()
  * which are loaded from calculator.js via a <script> tag before this file.
  */
 
@@ -43,23 +43,21 @@
       return;
     }
 
-    if (value === '%') {
-      // Custom feature: calculate what % the current number is of the previous number
-      // e.g. user types "25%200" → 25 is what % of 200?
-      const parts = expression.split('%');
-      if (parts.length === 2 && parts[0] !== '' && parts[1] !== '') {
-        try {
-          const result = percentOf(parseFloat(parts[0]), parseFloat(parts[1]));
-          expression = String(result);
-          updateDisplay(expression);
-          justEvaluated = true;
-        } catch (err) {
-          void err;
-          showError('Error');
-        }
-      } else {
-        expression += '%';
+    if (value === '!') {
+      // Custom feature: factorial of current number
+      const n = parseFloat(expression);
+      if (expression === '' || isNaN(n)) {
+        showError('Enter a number first');
+        return;
+      }
+      try {
+        const result = factorial(n);
+        expression = String(result);
         updateDisplay(expression);
+        justEvaluated = true;
+      } catch (err) {
+        void err;
+        showError('Error');
       }
       return;
     }
@@ -68,7 +66,6 @@
       if (expression === '') { return; }
       try {
         const result = evaluateExpression(expression);
-        // Avoid floating-point noise (e.g. 0.1+0.2)
         expression = String(parseFloat(result.toFixed(10)));
         updateDisplay(expression);
         justEvaluated = true;
@@ -79,7 +76,6 @@
       return;
     }
 
-    // If last action was = and user presses a number, start fresh
     if (justEvaluated && /[0-9.]/.test(value)) {
       expression = '';
     }
@@ -103,7 +99,7 @@
       '+': '+', '-': '-', '*': '*', '/': '/',
       '0':'0','1':'1','2':'2','3':'3','4':'4',
       '5':'5','6':'6','7':'7','8':'8','9':'9',
-      '.': '.', '%': '%',
+      '.': '.', '!': '!',
     };
     if (map[e.key] !== undefined) {
       e.preventDefault();

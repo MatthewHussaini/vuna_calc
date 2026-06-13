@@ -1,4 +1,4 @@
-const { evaluateExpression, percentOf } = require('../src/calculator');
+const { evaluateExpression, factorial } = require('../src/calculator');
 
 describe('arithmetic', () => {
   it('adds', () => expect(evaluateExpression('2+3')).toBe(5));
@@ -12,8 +12,12 @@ describe('arithmetic', () => {
     () => expect(() => evaluateExpression('2&3')).toThrow());
 });
 
-describe('percentOf (custom feature)', () => {
-  it('25 is 12.5% of 200', () => expect(percentOf(25, 200)).toBe(12.5));
-  it('throws when total is zero',
-    () => expect(() => percentOf(10, 0)).toThrow());
+describe('factorial (custom feature)', () => {
+  it('0! is 1',  () => expect(factorial(0)).toBe(1));
+  it('1! is 1',  () => expect(factorial(1)).toBe(1));
+  it('5! is 120', () => expect(factorial(5)).toBe(120));
+  it('10! is 3628800', () => expect(factorial(10)).toBe(3628800));
+  it('throws on negative', () => expect(() => factorial(-1)).toThrow());
+  it('throws on decimal', () => expect(() => factorial(2.5)).toThrow());
+  it('throws on too large', () => expect(() => factorial(171)).toThrow());
 });

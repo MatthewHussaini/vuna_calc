@@ -1,23 +1,50 @@
-import { rmSync, mkdirSync, cpSync } from 'node:fs';
+/**
+ * VUNA-Calc — pure logic engine (no DOM, no window references)
+ * Custom feature: factorial(n) — calculates n! (e.g. 5! = 120)
+ */
 
-rmSync('dist', { recursive: true, force: true });
+function evaluateExpression(expr) {
+  if (!/^[0-9+\-*/.() ]+$/.test(expr)) {
+    throw new Error('Invalid characters in expression');
+  }
 
-// Root: homepage
-mkdirSync('dist', { recursive: true });
+  // Detect explicit division by zero before eval
+  if (/\/\s*0(?!\d)/.test(expr)) {
+    throw new Error('Division by zero');
+  }
 
-// /calc/ subfolder: the calculator
-mkdirSync('dist/calc', { recursive: true });
-mkdirSync('dist/calc/src', { recursive: true });
+  const result = Function('"use strict"; return (' + expr + ')')();
 
-// Homepage at root
-cpSync('home.html', 'dist/index.html');
+  if (!isFinite(result)) {
+    throw new Error('Division by zero');
+  }
 
-// Calculator in /calc/
-cpSync('index.html',        'dist/calc/index.html');
-cpSync('src/calculator.js', 'dist/calc/src/calculator.js');
-cpSync('src/style.css',     'dist/calc/src/style.css');
-cpSync('src/ui.js',         'dist/calc/src/ui.js');
+  return result;
+}
 
-console.log('Build complete -> dist/');
-console.log('  dist/index.html         (homepage)');
-console.log('  dist/calc/index.html    (VUNA-Calc)');
+/**
+ * Custom feature: calculates factorial of n.
+ * Example: factorial(5) => 120, factorial(0) => 1
+ */
+function factorial(n) {
+  if (n < 0) {
+    throw new Error('Factorial of negative number');
+  }
+  if (!Number.isInteger(n)) {
+    throw new Error('Factorial requires a whole number');
+  }
+  if (n > 170) {
+    throw new Error('Number too large');
+  }
+  if (n === 0 || n === 1) { return 1; }
+  let result = 1;
+  for (let i = 2; i <= n; i++) {
+    result *= i;
+  }
+  return result;
+}
+
+// Export for Jest (Node environment only)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { evaluateExpression, factorial };
+}

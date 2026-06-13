@@ -1,6 +1,6 @@
 /**
  * VUNA-Calc — pure logic engine (no DOM, no window references)
- * Custom feature: factorial(n) — calculates n! (e.g. 5! = 120)
+ * Custom feature: getPi() — returns the value of Pi (3.141592653589793)
  */
 
 function evaluateExpression(expr) {
@@ -23,28 +23,14 @@ function evaluateExpression(expr) {
 }
 
 /**
- * Custom feature: calculates factorial of n.
- * Example: factorial(5) => 120, factorial(0) => 1
+ * Custom feature: returns the value of Pi.
+ * Example: getPi() => 3.141592653589793
  */
-function factorial(n) {
-  if (n < 0) {
-    throw new Error('Factorial of negative number');
-  }
-  if (!Number.isInteger(n)) {
-    throw new Error('Factorial requires a whole number');
-  }
-  if (n > 170) {
-    throw new Error('Number too large');
-  }
-  if (n === 0 || n === 1) { return 1; }
-  let result = 1;
-  for (let i = 2; i <= n; i++) {
-    result *= i;
-  }
-  return result;
+function getPi() {
+  return Math.PI;
 }
 
 // Export for Jest (Node environment only)
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { evaluateExpression, factorial };
+  module.exports = { evaluateExpression, getPi };
 }

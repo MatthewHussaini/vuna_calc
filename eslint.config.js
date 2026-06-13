@@ -23,7 +23,7 @@ module.exports = [
         process: 'readonly',
         // Calculator functions (declared in calculator.js, used in ui.js)
         evaluateExpression: 'readonly',
-        factorial: 'readonly',
+        getPi: 'readonly',
         // Jest globals (needed by test files)
         describe: 'readonly',
         it: 'readonly',

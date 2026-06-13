@@ -1,6 +1,6 @@
 /**
  * VUNA-Calc — UI wiring
- * Reads from / writes to the DOM. Calls evaluateExpression() and factorial()
+ * Reads from / writes to the DOM. Calls evaluateExpression() and getPi()
  * which are loaded from calculator.js via a <script> tag before this file.
  */
 
@@ -43,22 +43,12 @@
       return;
     }
 
-    if (value === '!') {
-      // Custom feature: factorial of current number
-      const n = parseFloat(expression);
-      if (expression === '' || isNaN(n)) {
-        showError('Enter a number first');
-        return;
-      }
-      try {
-        const result = factorial(n);
-        expression = String(result);
-        updateDisplay(expression);
-        justEvaluated = true;
-      } catch (err) {
-        void err;
-        showError('Error');
-      }
+    if (value === 'PI') {
+      // Custom feature: insert Pi value into expression
+      if (justEvaluated) { expression = ''; }
+      expression += getPi().toString();
+      updateDisplay(expression);
+      justEvaluated = false;
       return;
     }
 
@@ -99,7 +89,7 @@
       '+': '+', '-': '-', '*': '*', '/': '/',
       '0':'0','1':'1','2':'2','3':'3','4':'4',
       '5':'5','6':'6','7':'7','8':'8','9':'9',
-      '.': '.', '!': '!',
+      '.': '.',
     };
     if (map[e.key] !== undefined) {
       e.preventDefault();
